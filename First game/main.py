@@ -26,11 +26,14 @@ class Game:
     def new(self): #This is all the things nat need to happen at the start
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
+        self.mobs = pg.sprite.Group()
         self.bullets = pg.sprite.Group()
         for row, tiles in enumerate(self.map.data):
             for col, tile in enumerate(tiles):
                 if tile == '1':
                     Wall(self, col, row)
+                if tile == 'D':
+                    self.mob = Mob(self, col, row)
                 if tile == 'P':
                     self.player = Player(self, col, row)
         self.camera = Camera(self.map.width, self.map.height) #This is the scrolling camera
